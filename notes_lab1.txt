@@ -1,0 +1,107 @@
+Question #1.1
+
+This is a Moore Machine
+Between the rising edge of the clock, if you change the primary input, you don't change the primary input.  
+
+Question #1.2
+
+The state machine has 16 states: 
+
+IDLE, READY, BUSY AND WAIT, and in each of the, the internal variables can
+have the values ack and pass_token.
+
+
+
+
+Question #1.3
+As there are 16 states we minimum need 4 one-bit registers
+
+
+Question #1.4
+16
+
+Question #1.5
+The initial state is the IDLE state
+
+Question #1.6
+See attatched figure
+
+
+
+Question #1.7
+
+There are 11 theoretical states reachable from the initial state.
+- In the IDLE-state, the variables pass_token can take on two different values. 
+- In the READY-state, ack can only have one value. 
+- In the BUST-state, ack and pass_token can only have one value. 
+- In the WAIT-state, pass_token can  take on two different values. ack is not changed. 
+
+This adds up to: 
+
+4 (states) + 2 +1 +2+2 = 11 teoretical states
+
+
+
+
+PROBLEM #2
+
+QUESTION #2.1 and QUESTION #2.2
+The number of different models on top level are 2: arbiter and controller
+
+
+
+QUESTION #2.3
+The number of instances of controller model is 3: A,B,C
+
+
+
+
+
+PROBLEM 3
+QUESTION #3.1
+
+Current instance name: controllerA
+
+
+QUESTION #3.2
+
+The names of the outputs and inputs of this instance are 
+
+
+.inputs  id req sel 
+.outputs ack pass_token
+
+
+
+
+
+ 
+# Simulation vectors have been randomly generated
+
+
+.inputs  id req sel 
+.latches ack pass_token state 
+.outputs ack pass_token 
+.initial 0 1 IDLE 
+
+.start_vectors
+
+# id req sel ; ack pass_token state ; ack pass_token 
+
+B 0 C ; 0 1 IDLE  ; 0 1 
+B 0 A ; 0 0 IDLE  ; 0 0 
+A 1 A ; 0 0 IDLE  ; 0 0 
+X 0 A ; 0 0 READY ; 0 0 
+A 1 A ; 1 0 BUSY  ; 1 0 
+X 1 X ; 1 0 BUSY  ; 1 0 
+X 1 B ; 1 0 BUSY  ; 1 0 
+A 0 B ; 1 0 BUSY  ; 1 0 
+B 1 X ; 0 1 WAIT  ; 0 1 
+B 0 A ; 0 0 WAIT  ; 0 0 
+# Final State : 0 0 WAIT  
+
+
+
+
+
+
