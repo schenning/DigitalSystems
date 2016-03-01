@@ -1,0 +1,2 @@
+1) Two clients should not be using the bus simultaneously.
+2) If a client requests the bus it will finally be granted the bus.
