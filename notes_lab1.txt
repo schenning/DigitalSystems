@@ -101,6 +101,43 @@ B 0 A ; 0 0 WAIT  ; 0 0
 # Final State : 0 0 WAIT  
 
 
+# Problem 4.
+
+
+Question #4.1
+
+The current node, controllerA, and the verilog model are combinatory equivalent. 
+Question #4.2
+
+Beacuse the write_blif_mv command does extracts the hierarcy below the current node, which in this case is controllerA, and the are equal. 
+
+Question #4.3
+
+Yes, they are equal. 
+
+Question #4.4
+Same reason as #4.2
+
+
+PROBLEM 5
+
+Question #5.1
+The black box behaviour for both models will be the same, since the same output for different stimuli.They are not the same in the sense that the hardware is syntezised. Anyhow, from a black box point of view, they behave the same way. 
+
+Question #5.2
+The node is not combinatory equvivalent to cont.mv
+
+Question #5.3
+The hardware is not described the same way.
+
+Question #5.4
+yes
+Question #5.5
+
+The node is seq_eq to cont.mv, it reacts the same as cont.mv to different stimuli. 
+
+
+ 
 
 
 

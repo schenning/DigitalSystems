@@ -1,0 +1,228 @@
+.model controller
+.root controllerA
+.inputs sel req id 
+.outputs pass_token ack 
+.mv state$_n28_n2a$true 4 WAIT IDLE READY BUSY 
+.mv state$_n20_n23$true 4 WAIT IDLE READY BUSY 
+.mv _n78 4 WAIT IDLE READY BUSY 
+.mv _n22 4 WAIT IDLE READY BUSY 
+.mv state$req$raw_n41 4 WAIT IDLE READY BUSY 
+.mv state$is_selected$raw_n4b 4 WAIT IDLE READY BUSY 
+.mv state 4 WAIT IDLE READY BUSY 
+.mv state$req$raw_n14 4 WAIT IDLE READY BUSY 
+.mv state$req_n10$true 4 WAIT IDLE READY BUSY 
+.mv state$_n38$raw_n51 4 WAIT IDLE READY BUSY 
+.mv state$is_selected$raw_n1e 4 WAIT IDLE READY BUSY 
+.mv state$_nb$raw_n6c 4 WAIT IDLE READY BUSY 
+.mv state$raw_n6 4 WAIT IDLE READY BUSY 
+.mv _n3a 4 WAIT IDLE READY BUSY 
+.mv state$req_n3d$true 4 WAIT IDLE READY BUSY 
+.mv state$_n25$raw_n54 4 WAIT IDLE READY BUSY 
+.mv state$_n28$raw_n35 4 WAIT IDLE READY BUSY 
+.mv _n27 4 WAIT IDLE READY BUSY 
+.mv sel 4 A B C X 
+.mv id 4 A B C X 
+.mv state$_n20$raw_n61 4 WAIT IDLE READY BUSY 
+.mv _nd 4 WAIT IDLE READY BUSY 
+.latch _n78 state
+.reset state$raw_n6 -> state
+- =state$raw_n6
+.latch _n7d pass_token
+.reset pass_token$raw_n8 -> pass_token
+0 0
+1 1
+.latch _n7f ack
+.reset ack$raw_n7 -> ack
+0 0
+1 1
+.table -> state$raw_n6
+IDLE
+.table -> ack$raw_n7
+0
+.table -> pass_token$raw_n8
+1
+.table sel id -> _na
+.default 0
+- =sel 1
+.table _na -> is_selected$raw_n9
+- =_na
+.table -> _nd
+IDLE
+.table state _nd -> _nc
+.default 0
+- =state 1
+.table _nc -> _nb
+.default 1
+0 0
+.table is_selected -> _ne
+- =is_selected
+.table req -> _nf
+- =req
+.table -> state$req_n10$true
+READY
+.table -> pass_token$req_n11$false
+1
+.table req state$req_n10$true state -> state$req$raw_n14
+0 - - =state
+1 - - =state$req_n10$true
+.table req pass_token pass_token$req_n11$false -> pass_token$req$raw_n15
+.default 0
+1 1 - 1
+0 - 1 1
+.table -> pass_token$is_selected_n17$false
+0
+.table is_selected pass_token$req$raw_n15 pass_token$is_selected_n17$false -> pass_token$is_selected$raw_n1a
+.default 0
+1 1 - 1
+0 - 1 1
+.table is_selected state$req$raw_n14 state -> state$is_selected$raw_n1e
+0 - - =state
+1 - - =state$req$raw_n14
+.table -> _n22
+READY
+.table state _n22 -> _n21
+.default 0
+- =state 1
+.table _n21 -> _n20
+.default 1
+0 0
+.table -> state$_n20_n23$true
+BUSY
+.table -> ack$_n20_n24$true
+1
+.table -> _n27
+BUSY
+.table state _n27 -> _n26
+.default 0
+- =state 1
+.table _n26 -> _n25
+.default 1
+0 0
+.table req -> _n28
+0 1
+1 0
+.table _n28 -> _n29
+- =_n28
+.table -> state$_n28_n2a$true
+WAIT
+.table -> ack$_n28_n2b$true
+0
+.table -> pass_token$_n28_n2c$true
+1
+.table _n28 pass_token$_n28_n2c$true pass_token -> pass_token$_n28$raw_n33
+.default 0
+1 1 - 1
+0 - 1 1
+.table _n28 state$_n28_n2a$true state -> state$_n28$raw_n35
+0 - - =state
+1 - - =state$_n28_n2a$true
+.table _n28 ack$_n28_n2b$true ack -> ack$_n28$raw_n36
+.default 0
+1 1 - 1
+0 - 1 1
+.table -> _n3a
+WAIT
+.table state _n3a -> _n39
+.default 0
+- =state 1
+.table _n39 -> _n38
+.default 1
+0 0
+.table is_selected -> _n3b
+- =is_selected
+.table req -> _n3c
+- =req
+.table -> state$req_n3d$true
+READY
+.table -> pass_token$req_n3e$false
+1
+.table req state$req_n3d$true state -> state$req$raw_n41
+0 - - =state
+1 - - =state$req_n3d$true
+.table req pass_token pass_token$req_n3e$false -> pass_token$req$raw_n42
+.default 0
+1 1 - 1
+0 - 1 1
+.table -> pass_token$is_selected_n44$false
+0
+.table is_selected pass_token$req$raw_n42 pass_token$is_selected_n44$false -> pass_token$is_selected$raw_n47
+.default 0
+1 1 - 1
+0 - 1 1
+.table is_selected state$req$raw_n41 state -> state$is_selected$raw_n4b
+0 - - =state
+1 - - =state$req$raw_n41
+.table _n38 state$is_selected$raw_n4b state -> state$_n38$raw_n51
+0 - - =state
+1 - - =state$is_selected$raw_n4b
+.table _n38 pass_token$is_selected$raw_n47 pass_token -> pass_token$_n38$raw_n52
+.default 0
+1 1 - 1
+0 - 1 1
+.table _n25 state$_n28$raw_n35 state$_n38$raw_n51 -> state$_n25$raw_n54
+0 - - =state$_n38$raw_n51
+1 - - =state$_n28$raw_n35
+.table _n25 pass_token$_n28$raw_n33 pass_token$_n38$raw_n52 -> pass_token$_n25$raw_n55
+.default 0
+1 1 - 1
+0 - 1 1
+.table _n25 ack$_n28$raw_n36 ack -> ack$_n25$raw_n5d
+.default 0
+1 1 - 1
+0 - 1 1
+.table _n20 state$_n20_n23$true state$_n25$raw_n54 -> state$_n20$raw_n61
+0 - - =state$_n25$raw_n54
+1 - - =state$_n20_n23$true
+.table _n20 ack$_n20_n24$true ack$_n25$raw_n5d -> ack$_n20$raw_n62
+.default 0
+1 1 - 1
+0 - 1 1
+.table _n20 pass_token pass_token$_n25$raw_n55 -> pass_token$_n20$raw_n69
+.default 0
+1 1 - 1
+0 - 1 1
+.table _nb state$is_selected$raw_n1e state$_n20$raw_n61 -> state$_nb$raw_n6c
+0 - - =state$_n20$raw_n61
+1 - - =state$is_selected$raw_n1e
+.table _nb pass_token$is_selected$raw_n1a pass_token$_n20$raw_n69 -> pass_token$_nb$raw_n6d
+.default 0
+1 1 - 1
+0 - 1 1
+.table _nb ack ack$_n20$raw_n62 -> ack$_nb$raw_n75
+.default 0
+1 1 - 1
+0 - 1 1
+.table is_selected$raw_n9 -> is_selected
+0 0
+1 1
+.table _nb _ne _nf _n20 _n25 _n29 _n38 _n3b _n3c -> _n77
+.default 0
+1 1 1 - - - - - - 1
+0 - - 1 - - - - - 1
+0 - - 0 1 1 - - - 1
+0 - - 0 0 - 1 1 1 1
+.table _n77 state$_nb$raw_n6c state -> _n78
+1 - - =state$_nb$raw_n6c
+0 - - =state
+.table _nb _ne _nf _n20 _n25 _n29 _n38 _n3b _n3c -> _n7c
+.default 0
+1 1 0 - - - - - - 1
+1 0 - - - - - - - 1
+0 - - 0 1 1 - - - 1
+0 - - 0 0 - 1 1 0 1
+0 - - 0 0 - 1 0 - 1
+.table _n7c pass_token$_nb$raw_n6d pass_token -> _n7d
+1 0 - 0
+1 1 - 1
+0 - 0 0
+0 - 1 1
+.table _nb _n20 _n25 _n29 -> _n7e
+.default 0
+0 1 - - 1
+0 0 1 1 1
+.table _n7e ack$_nb$raw_n75 ack -> _n7f
+1 0 - 0
+1 1 - 1
+0 - 0 0
+0 - 1 1
+.end

@@ -1,5 +1,5 @@
 typedef enum {A, B, C, X} selection;
-typedef enum {IDLE, READY, BUSY} controller_state;
+typedef enum {WAIT, IDLE, READY, BUSY} controller_state;
 
 module main(clk);
 input clk;
@@ -53,10 +53,20 @@ always @(posedge clk) begin
     BUSY:
       if (!req)
         begin
-        state = IDLE;
+        state = WAIT;
         ack = 0;
         pass_token = 1;
         end
+    WAIT:
+      if (is_selected)
+        if (req)
+          begin
+          state = READY;
+          end
+        else
+          pass_token = 1;
+      else
+        pass_token = 0;
   endcase
 end
 endmodule
