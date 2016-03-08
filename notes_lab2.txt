@@ -1,0 +1,6 @@
+Problem #3
+
+- Only one module can use the bus at the same time.
+- If a client recieves the token, it should return the token after a finite amount if time (liveness property)
+
+

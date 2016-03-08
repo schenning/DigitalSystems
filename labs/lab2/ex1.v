@@ -87,25 +87,37 @@ always @(posedge clk) begin
 end
 endmodule
 
-typedef enum {} client_state;
+typedef enum {IDLE, BUSY} client_state;
 
 module client(clk, req, ack);
 input clk, ack;
 output req;
-
 reg req;
 client_state reg state;
 
 wire rand_choice;
 
-initial req = ;
-initial state = ;
+initial req = 0;
+initial state = IDLE;
 
 assign rand_choice = $ND(0,1);
 
 always @(posedge clk) begin
   case(state)
+  	IDLE:
+	  if(rand_choice)
+	    begin
+	    state = BUSY;
+		req = 1;
+        end
+	BUSY:
+	  if (ack)
+	    begin
+		state = IDLE;
+		req=0;
+        end
 
+ 
   endcase
 end
 endmodule
