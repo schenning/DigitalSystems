@@ -1,0 +1,2 @@
+AG!((ackA=1 * ackB=1) + (ackB=1 * ackC=1) + (ackC=1 * ackA=1));
+

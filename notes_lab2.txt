@@ -3,4 +3,70 @@ Problem #3
 - Only one module can use the bus at the same time.
 - If a client recieves the token, it should return the token after a finite amount if time (liveness property)
 
+Problem #4
 
+The system statisfies the properties, but we cannot conclude that the implementation is correct only by that .
+
+
+
+.inputs  clientA.rand_choice clientB.rand_choice clientC.rand_choice 
+.latches ackA ackB ackC arbiter.state clientA.state clientB.state clientC.state controllerA.state controllerB.state controllerC.state pass_tokenA pass_tokenB pass_tokenC reqA reqB reqC 
+.outputs ackA ackB ackC 
+.initial 0 0 0 A IDLE IDLE IDLE IDLE IDLE IDLE 1 1 1 0 0 0 
+
+.start_vectors
+
+# clientA.rand_choice clientB.rand_choice clientC.rand_choice ; ackA ackB ackC arbiter.state clientA.state clientB.state clientC.state controllerA.state controllerB.state controllerC.state pass_tokenA pass_tokenB pass_tokenC reqA reqB reqC ; ackA ackB ackC 
+
+0 1 1 ; 0 0 0 A IDLE IDLE IDLE IDLE  IDLE  IDLE  1 1 1 0 0 0 ; 0 0 0 
+1 1 0 ; 0 0 0 B IDLE BUSY BUSY IDLE  IDLE  IDLE  1 0 0 0 1 1 ; 0 0 0 
+1 0 1 ; 0 0 0 C BUSY BUSY BUSY IDLE  READY IDLE  0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 0 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+1 0 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+0 1 0 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+0 0 0 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+1 0 1 ; 0 0 0 A BUSY BUSY IDLE IDLE  IDLE  IDLE  0 0 1 1 1 0 ; 0 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY READY IDLE  IDLE  0 0 0 1 1 1 ; 0 0 0 
+0 0 1 ; 1 0 0 C BUSY BUSY BUSY BUSY  IDLE  IDLE  0 0 0 1 1 1 ; 1 0 0 
+0 0 0 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+0 1 0 ; 0 0 0 B IDLE BUSY BUSY IDLE  IDLE  IDLE  1 0 0 0 1 1 ; 0 0 0 
+1 1 1 ; 0 0 0 C IDLE BUSY BUSY IDLE  READY IDLE  0 0 0 0 1 1 ; 0 0 0 
+0 0 1 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 1 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+0 1 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+1 0 0 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+0 1 0 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+1 1 1 ; 0 0 0 A BUSY BUSY IDLE IDLE  IDLE  IDLE  0 0 1 1 1 0 ; 0 0 0 
+0 1 0 ; 0 0 0 B BUSY BUSY BUSY READY IDLE  IDLE  0 0 0 1 1 1 ; 0 0 0 
+1 1 0 ; 1 0 0 C BUSY BUSY BUSY BUSY  IDLE  IDLE  0 0 0 1 1 1 ; 1 0 0 
+1 0 1 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 ; 0 0 0 
+1 1 1 ; 0 0 0 C BUSY BUSY BUSY IDLE  READY IDLE  0 0 0 1 1 1 ; 0 0 0 
+1 1 0 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 1 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+0 0 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+0 0 1 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+0 0 0 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+1 1 0 ; 0 0 0 A BUSY BUSY IDLE IDLE  IDLE  IDLE  0 0 1 1 1 0 ; 0 0 0 
+0 0 0 ; 0 0 0 B BUSY BUSY IDLE READY IDLE  IDLE  0 0 0 1 1 0 ; 0 0 0 
+1 0 1 ; 1 0 0 C BUSY BUSY IDLE BUSY  IDLE  IDLE  0 0 0 1 1 0 ; 1 0 0 
+1 1 1 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+1 1 0 ; 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 ; 0 0 0 
+1 0 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  READY IDLE  0 0 0 1 1 1 ; 0 0 0 
+1 1 0 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 1 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+1 0 1 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+1 1 0 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+1 1 1 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+1 1 1 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+0 0 1 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  IDLE  0 0 1 1 1 1 ; 0 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY READY IDLE  IDLE  0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 1 0 0 C BUSY BUSY BUSY BUSY  IDLE  IDLE  0 0 0 1 1 1 ; 1 0 0 
+1 0 1 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 ; 0 0 0 
+# Final State : 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 
+ 

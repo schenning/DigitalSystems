@@ -1,0 +1,38 @@
+Lab 3
+
+Problem 1
+
+Question #1
+
+"No two processes can access the bus at one time"
+
+CTL-formula:
+
+    AG!((ackA=1 * ackB=1) + (ackB=1 * ackC=1) + (ackC=1 * ackA=1));
+		
+Question #1.2
+
+	--Goes to state 7:
+ackB:0
+arbiter.state:B
+clientB.state:REQ
+controllerB.state:IDLE
+pass_tokenB:1
+reqB:1
+
+--Goes to state 8:
+arbiter.state:C
+clientC.state:REQ
+controllerB.state:READY
+reqC:1
+
+
+Bug: The FSM has no control over the value of pass_token when the arbiter changes state.
+
+Question #1.3
+
+Set passtoken = 0 in IDLE state
+ 
+Question #2
+
+ 

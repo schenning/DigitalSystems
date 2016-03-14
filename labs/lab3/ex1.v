@@ -44,6 +44,7 @@ always @(posedge clk) begin
         if (req)
           begin
           state = READY;
+		  pass_token = 0;
           end
         else
           pass_token = 1;
