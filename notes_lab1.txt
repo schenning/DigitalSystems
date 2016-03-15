@@ -1,3 +1,8 @@
+Report 
+
+Containing answers to questions in Lab 1,2,3.
+ 
+
 Question #1.1
 
 This is a Moore Machine

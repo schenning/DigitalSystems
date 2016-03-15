@@ -44,7 +44,7 @@ always @(posedge clk) begin
         if (req)
           begin
           state = READY;
-		  pass_token = 0;
+          pass_token = 0; /* dropping off this line causes a safety bug */
           end
         else
           pass_token = 1;
@@ -78,8 +78,7 @@ initial state = A;
 assign sel = active ? state: X;
 
 always @(posedge clk) begin
-  if(active)
-  begin
+  if (active)
     case(state) 
       A:
         state = B;
@@ -88,7 +87,6 @@ always @(posedge clk) begin
       C:
         state = A;
     endcase
-  end
 end
 endmodule
 
@@ -122,7 +120,7 @@ always @(posedge clk) begin
         begin
         req = 0;
         state = NO_REQ;
-        end  
+        end
   endcase
 end
 endmodule

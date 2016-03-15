@@ -1,0 +1,1 @@
+F(F(clientA.state=HAVE_TOKEN) + F(clientB.state=HAVE_TOKEN) + F(clientC.state=HAVE_TOKEN ));

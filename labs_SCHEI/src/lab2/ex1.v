@@ -1,6 +1,5 @@
 typedef enum {A, B, C, X} selection;
 typedef enum {IDLE, READY, BUSY} controller_state;
-typedef enum {NO_REQ, REQ, HAVE_TOKEN} client_state;
 
 module main(clk);
 input clk;
@@ -44,7 +43,6 @@ always @(posedge clk) begin
         if (req)
           begin
           state = READY;
-		  pass_token = 0;
           end
         else
           pass_token = 1;
@@ -78,51 +76,48 @@ initial state = A;
 assign sel = active ? state: X;
 
 always @(posedge clk) begin
-  if(active)
-  begin
-    case(state) 
-      A:
-        state = B;
-      B:
-        state = C;
-      C:
-        state = A;
-    endcase
-  end
+  case(state) 
+    A:
+      state = B;
+    B:
+      state = C;
+    C:
+      state = A;
+  endcase
 end
 endmodule
+
+typedef enum {IDLE, BUSY} client_state;
 
 module client(clk, req, ack);
 input clk, ack;
 output req;
-
 reg req;
 client_state reg state;
 
 wire rand_choice;
 
 initial req = 0;
-initial state = NO_REQ;
+initial state = IDLE;
 
 assign rand_choice = $ND(0,1);
 
 always @(posedge clk) begin
   case(state)
-    NO_REQ:
-      if (rand_choice)
-        begin
-        req = 1;
-        state = REQ;
+  	IDLE:
+	  if(rand_choice)
+	    begin
+	    state = BUSY;
+		req = 1;
         end
-    REQ:
-      if (ack)
-        state = HAVE_TOKEN;
-    HAVE_TOKEN:
-      if (rand_choice)
-        begin
-        req = 0;
-        state = NO_REQ;
-        end  
+	BUSY:
+	  if (ack)
+	    begin
+		state = IDLE;
+		req=0;
+        end
+
+ 
   endcase
 end
 endmodule
