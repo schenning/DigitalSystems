@@ -8,15 +8,15 @@ end entity g1;
 architecture arc of g1 is
 
 -- internal copy; the output s will be a copy of this signal
-
   variable s_local: bit;
+  s_local = 1;
 
 begin
 
-  s <= s_local; -- the output s is a copy of s_local
 
   p: process
   begin
+		  s := s_local; -- the output s is a copy of s_local
     -- first, synchronize on a rising edge of clock where a is active
     wait until clk = '1' and clk'event and a = '1';
     s_local := '1'; -- a macro-cycle starts (set s_local)
@@ -29,4 +29,3 @@ begin
   end process p;
 
 end architecture arc;
-
