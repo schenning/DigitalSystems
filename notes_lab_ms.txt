@@ -1,0 +1,11 @@
+Simulating
+
+
+Q 
+
+- The signal a are active four times on the rising edge of the clock. 
+
+- It must be ingnord one time (the second intance of active a) during the simulation period since the macro-cycle is already running. The third time a is high, the new macro cycle does not start, and that the correct behaviour according to the spesifications. 
+
+
+
