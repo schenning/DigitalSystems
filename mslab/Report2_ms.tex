@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\title{Report Modelsim: \\ Digital Systems}
+\author{Henning Schei}
+\date{March 2016}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=VHDL,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\begin{document}
+
+\maketitle
+
+
+\section{Simulating}
+
+\begin{itemize}
+
+\item The signal a are active four times on the rising edge of the clock.
+\item It must be ingnord one time (the second intance of active a) during the simulation period since the macro-cycle is already running. The third time a is high, the new macro cycle does not start, and that is not the correct behaviour according to the spesifications.
+\item  The bug in the g1.vhd got fixed by: \begin {lstlisting}
+if a='0' then
+        clk = '1' and clk'event and a = '1' ;
+    end if;
+\end{lstlisting}
+One could also use: 
+ \begin {lstlisting}
+ if not(clk='1' and clk'event a='1') then
+\end{lstlisting}
+\item As expected the signal assignments are exceuted on the same physical duration, but with one delta-cycle delay.  
+
+\end{itemize}
+
+\section {Bonus}
+\begin{itemize}
+\item The g1.vhd with synchronous, active high, reset signal is added in directory. 
+\end{itemize}
+
+
+\end{document}
+

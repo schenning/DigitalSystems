@@ -1,0 +1,27 @@
+Running PRESTO HDLC
+Compiling Entity Declaration G1
+Compiling Architecture ARC of G1
+
+-------------------
+    22:       wait until clk = '1' and clk'event and a = '1';
+              ^^^^
+[Error] Illegal wait statement: cannot appear inside process with sensitivity list
+
+-------------------
+    27:                  clk = '1';
+                             ^
+[Failure] Syntax error : received '='
+          while expecting ';'
+ 
+*** Presto compilation was unsuccessful. ***
+Loading db file '/packages/LabSoC/Synopsys/EDK/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt0p85v25c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/packages/LabSoC/Synopsys/dc/Default/libraries/syn/gtech.db'
+Loading db file '/packages/LabSoC/Synopsys/dc/Default/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'gtech'
+Error: Cannot find the design 'g1' in the library 'WORK'. (LBR-0)
+Error: Current design is not defined. (UID-4)
+
+Thank you...
+

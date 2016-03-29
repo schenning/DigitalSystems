@@ -1,0 +1,18 @@
+Running PRESTO HDLC
+Compiling Entity Declaration G1
+Compiling Architecture ARC of G1
+Presto compilation completed successfully.
+Loading db file '/packages/LabSoC/Synopsys/EDK/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt0p85v25c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/packages/LabSoC/Synopsys/dc/Default/libraries/syn/gtech.db'
+Loading db file '/packages/LabSoC/Synopsys/dc/Default/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Error:  ../g1.vhd:27: WAIT statement inside FOR loop is not supported. (ELAB-996)
+Error:  ../g1.vhd:27: WAIT statement inside FOR loop is not supported. (ELAB-996)
+*** Presto compilation terminated with 2 errors. ***
+Error: Current design is not defined. (UID-4)
+
+Thank you...
+
