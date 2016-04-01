@@ -1,0 +1,106 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/homes/schei/git/digitalsystems/dclab
+T_opt
+!s110 1459527464
+VmEk9UZN_Oz<E6FgOlDo=Q2
+Z1 04 2 3 work g1 arc 1
+=1-000ae431a4f1-56fe9f24-68a4c-744f
+Z2 o-quiet -auto_acc_if_foreign -work work
+Z3 tCvgOpt 0
+n@_opt
+Z4 OL;O;10.5;63
+R0
+T_opt1
+!s110 1459527549
+VIUHjVfX02hR1`<SM_l3L:3
+R1
+=1-000ae431a4f1-56fe9f7c-dd6c5-7499
+o-quiet -auto_acc_if_foreign -work work +acc
+R3
+n@_opt1
+R4
+R0
+T_opt2
+!s110 1459529494
+V<8dNOEVX6z]Y`fT3U6XOK2
+04 6 3 work g1_sim sim 1
+=1-000ae431a4f1-56fea715-92a9f-7bf8
+R2
+R3
+n@_opt2
+R4
+Eg1
+Z5 w1459529427
+R0
+Z6 8g1.vhd
+Z7 Fg1.vhd
+l0
+L5
+VBhOiGYlzmVPWT>SdX@gFK1
+!s100 HHcM:LPG9m82kQNL^mI_K2
+Z8 OL;C;10.5;63
+32
+Z9 !s110 1459529433
+!i10b 1
+Z10 !s108 1459529433.000000
+Z11 !s90 g1.vhd|
+Z12 !s107 g1.vhd|
+!i113 0
+Z13 tExplicit 1 CvgOpt 0
+Aarc
+Z14 DEx4 work 2 g1 0 22 BhOiGYlzmVPWT>SdX@gFK1
+l16
+L10
+VVPF4jGjJMaEki8674Z=n^1
+!s100 <8`S813i9ho:PZ?FK:4U;2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 0
+R13
+Eg1_sim
+Z15 w1459529472
+R0
+Z16 8g1_sim.vhd
+Z17 Fg1_sim.vhd
+l0
+L5
+V4a6P_K=Khf3=o9QO:n^240
+!s100 _9]`>f?eEk:[D?S_V0Ffo1
+R8
+32
+Z18 !s110 1459529479
+!i10b 1
+Z19 !s108 1459529478.000000
+Z20 !s90 g1_sim.vhd|
+Z21 !s107 g1_sim.vhd|
+!i113 0
+R13
+Asim
+R14
+DEx4 work 6 g1_sim 0 22 4a6P_K=Khf3=o9QO:n^240
+l17
+L9
+V[9:z0b2JM:hZLQgSzk`^o1
+!s100 kBB6?dZ[CISn_iZmzEBhL2
+R8
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 0
+R13

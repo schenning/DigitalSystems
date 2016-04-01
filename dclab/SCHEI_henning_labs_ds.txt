@@ -1,0 +1,437 @@
+VIS Tutorial
+
+Report DS
+name: Henning SCHEI
+
+
+Containing answers to questions in Lab 1,2,3 and some of lab 4.
+ 
+
+--------------------------------------------------------------------
+Lab 1
+--------------------------------------------------------------------
+Question #1.1
+-------------
+	This is a Moore Machine. Between the rising edge of the clock, if you change the primary input, you don't change the primary input.  
+
+
+
+
+Question #1.2
+-------------
+	The state machine has 16 states: 
+
+	IDLE, READY, BUSY AND WAIT, and in each of the, the internal variables can
+	have the values ack and pass_token. And this will lead to 4 * 2 * 2 = 16 states. 
+	It has to be mentioned that this are teorethical states, some of which will never occour in the FSM.
+
+
+
+Question #1.3
+--------------
+
+	As there are 16 states we minimum need log2(16)= 4 one-bit registers.
+	If we exclude the states that are only teorethical accessable, which is 7, we only need 3 bits. 
+
+
+ 
+
+Question #1.4
+--------------
+	With 4 one-bit registres, we can represent 16 states. 
+
+
+
+
+
+
+Question #1.5
+--------------
+	The initial state is IDLE with ack = 0 and pass_token=1.
+
+
+
+
+
+Question #1.6
+---------------
+	See attatched figure (Number #1)
+
+
+
+Question #1.7
+---------------
+	There are 7 theoretical states reachable from the initial state. I interpret this question so that "reachable" also includes the initial node/state. 
+
+	- In the IDLE-state, the variables pass_token can take on two different values. 
+	- In the READY-state, ack can only have one value. 
+	- In the BUST-state, ack and pass_token can only have one value. 
+	- In the WAIT-state, pass_token can  take on two different values. ack is not changed. 
+
+	This adds up to: 
+
+	4 (states) + 2 +1 +2+2 = 11 teoretical states
+
+
+
+
+PROBLEM #2
+*******************************
+
+QUESTION #2.1 and QUESTION #2.2
+-------------------------------
+
+	There are 4 different models in top level.
+	controller (a,b,c) and arbiter
+
+
+QUESTION #2.3
+-------------------
+	The number of instances of controller model is 3: A,B,C
+
+
+
+
+
+PROBLEM 3
+********************************
+QUESTION #3.1
+-------------------
+	Current instance name: controllerA
+
+
+QUESTION #3.2
+-------------------
+	The names of the outputs and inputs of this instance are 
+	.inputs  id req sel 
+	.outputs ack pass_token
+
+
+
+Problem 4.
+**********************************
+
+Question #4.1
+---------------------
+	The current node, controllerA, and the verilog model are combinatory equivalent.
+
+ 
+Question #4.2
+---------------------
+	Beacuse the write_blif_mv command does extracts the hierarcy below the current node, which in this case is controllerA, and in terms of hardware description these are equal.  
+
+
+Question #4.3
+---------------------
+	Yes, they are seq equal. 
+
+
+Question #4.4
+----------------------
+	Same reason as #4.2
+
+
+PROBLEM 5
+*************************************
+Question #5.1
+-----------------------
+	The black box behaviour for both models will be the same, since the same output for different stimuli.They are not the same in the sense that the hardware is syntezised. Anyhow, from a black box point of view, they behave the same way. 
+
+Question #5.2
+------------------------
+	The node is not combinatory equvivalent to cont.mv
+
+Question #5.3
+------------------------
+	Because the internal state values are differnt.
+
+Question #5.4
+------------------------
+	yes, seq eq.
+
+Question #5.5
+------------------------
+
+	The node is seq_eq to cont.mv, it reacts the same as cont.mv to different stimuli, ie. the black box behaviour is satisfied. 
+
+
+--------------------------------------------------------------------
+Lab 2
+--------------------------------------------------------------------
+
+Problem #1
+------------------------
+	See attached figure(#2 and #3)
+
+
+Problem #2
+------------------------
+
+	See attached verilog file (ex1_lab2.v and ex2_lab2.v)
+
+
+
+
+Problem #3
+-------------------------
+- Only one module can use the bus at the same time.
+- If a client recieves the token, it should return the token after a finite amount if time (liveness property)
+
+Problem #4
+--------------------------
+
+The system statisfies the properties, but we cannot conclude that the implementation is correct only by that .
+
+
+
+.inputs  clientA.rand_choice clientB.rand_choice clientC.rand_choice 
+.latches ackA ackB ackC arbiter.state clientA.state clientB.state clientC.state controllerA.state controllerB.state controllerC.state pass_tokenA pass_tokenB pass_tokenC reqA reqB reqC 
+.outputs ackA ackB ackC 
+.initial 0 0 0 A IDLE IDLE IDLE IDLE IDLE IDLE 1 1 1 0 0 0 
+
+.start_vectors
+
+# clientA.rand_choice clientB.rand_choice clientC.rand_choice ; ackA ackB ackC arbiter.state clientA.state clientB.state clientC.state controllerA.state controllerB.state controllerC.state pass_tokenA pass_tokenB pass_tokenC reqA reqB reqC ; ackA ackB ackC 
+
+0 1 1 ; 0 0 0 A IDLE IDLE IDLE IDLE  IDLE  IDLE  1 1 1 0 0 0 ; 0 0 0 
+1 1 0 ; 0 0 0 B IDLE BUSY BUSY IDLE  IDLE  IDLE  1 0 0 0 1 1 ; 0 0 0 
+1 0 1 ; 0 0 0 C BUSY BUSY BUSY IDLE  READY IDLE  0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 0 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+1 0 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+0 1 0 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+0 0 0 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+1 0 1 ; 0 0 0 A BUSY BUSY IDLE IDLE  IDLE  IDLE  0 0 1 1 1 0 ; 0 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY READY IDLE  IDLE  0 0 0 1 1 1 ; 0 0 0 
+0 0 1 ; 1 0 0 C BUSY BUSY BUSY BUSY  IDLE  IDLE  0 0 0 1 1 1 ; 1 0 0 
+0 0 0 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+0 1 0 ; 0 0 0 B IDLE BUSY BUSY IDLE  IDLE  IDLE  1 0 0 0 1 1 ; 0 0 0 
+1 1 1 ; 0 0 0 C IDLE BUSY BUSY IDLE  READY IDLE  0 0 0 0 1 1 ; 0 0 0 
+0 0 1 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 1 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+0 1 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+1 0 0 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+0 1 0 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+1 1 1 ; 0 0 0 A BUSY BUSY IDLE IDLE  IDLE  IDLE  0 0 1 1 1 0 ; 0 0 0 
+0 1 0 ; 0 0 0 B BUSY BUSY BUSY READY IDLE  IDLE  0 0 0 1 1 1 ; 0 0 0 
+1 1 0 ; 1 0 0 C BUSY BUSY BUSY BUSY  IDLE  IDLE  0 0 0 1 1 1 ; 1 0 0 
+1 0 1 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 ; 0 0 0 
+1 1 1 ; 0 0 0 C BUSY BUSY BUSY IDLE  READY IDLE  0 0 0 1 1 1 ; 0 0 0 
+1 1 0 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 1 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+0 0 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+0 0 1 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+0 0 0 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+1 1 0 ; 0 0 0 A BUSY BUSY IDLE IDLE  IDLE  IDLE  0 0 1 1 1 0 ; 0 0 0 
+0 0 0 ; 0 0 0 B BUSY BUSY IDLE READY IDLE  IDLE  0 0 0 1 1 0 ; 0 0 0 
+1 0 1 ; 1 0 0 C BUSY BUSY IDLE BUSY  IDLE  IDLE  0 0 0 1 1 0 ; 1 0 0 
+1 1 1 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+1 1 0 ; 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 ; 0 0 0 
+1 0 0 ; 0 0 0 C BUSY BUSY BUSY IDLE  READY IDLE  0 0 0 1 1 1 ; 0 0 0 
+1 1 0 ; 0 1 0 A BUSY BUSY BUSY IDLE  BUSY  IDLE  0 0 0 1 1 1 ; 0 1 0 
+0 1 1 ; 0 1 0 B BUSY IDLE BUSY IDLE  BUSY  IDLE  0 0 0 1 0 1 ; 0 1 0 
+1 0 1 ; 0 0 0 C BUSY BUSY BUSY IDLE  IDLE  IDLE  0 1 0 1 1 1 ; 0 0 0 
+1 1 0 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  READY 0 0 0 1 1 1 ; 0 0 0 
+1 1 1 ; 0 0 1 B BUSY BUSY BUSY IDLE  IDLE  BUSY  0 0 0 1 1 1 ; 0 0 1 
+1 1 1 ; 0 0 1 C BUSY BUSY IDLE IDLE  IDLE  BUSY  0 0 0 1 1 0 ; 0 0 1 
+0 0 1 ; 0 0 0 A BUSY BUSY BUSY IDLE  IDLE  IDLE  0 0 1 1 1 1 ; 0 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY READY IDLE  IDLE  0 0 0 1 1 1 ; 0 0 0 
+0 0 0 ; 1 0 0 C BUSY BUSY BUSY BUSY  IDLE  IDLE  0 0 0 1 1 1 ; 1 0 0 
+1 0 1 ; 1 0 0 A IDLE BUSY BUSY BUSY  IDLE  IDLE  0 0 0 0 1 1 ; 1 0 0 
+1 0 0 ; 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 ; 0 0 0 
+# Final State : 0 0 0 B BUSY BUSY BUSY IDLE  IDLE  IDLE  1 0 0 1 1 1 
+ 
+
+
+
+--------------------------------------------------------------------
+Lab 3
+--------------------------------------------------------------------
+
+
+
+Problem 1
+********************************
+Question #1
+---------------------
+"No two processes can access the bus at one time"
+
+	CTL-formula:
+    AG!((ackA=1 * ackB=1) + (ackB=1 * ackC=1) + (ackC=1 * ackA=1));
+		
+Question #1.2
+
+	--Goes to state 7:
+ackB:0
+arbiter.state:B
+clientB.state:REQ
+controllerB.state:IDLE
+pass_tokenB:1
+reqB:1
+
+--Goes to state 8:
+arbiter.state:C
+clientC.state:REQ
+controllerB.state:READY
+reqC:1
+
+
+Bug: The FSM has no control over the value of pass_token when the controller changes state.
+
+Question #1.3
+--------------------
+	Set passtoken = 0 in IDLE state
+ 
+Question #2.1
+--------------------
+	"If client A is requesting for the bus, it will not drop the request until it gets an acknowledgment"
+	CTL: AG( (reqA=1) -> AX(( ackA=1 ) + ( reqA=1 )));
+
+Question #2.2
+--------------------
+	formula passed.
+
+Question #3.1
+---------------------
+
+	"if A is holding the bus and B is requesting, then it is not possible for A to release control of the bus and get it back, before B gets control of the bus "
+ AG(((ackA=1) * (reqB=1)) -> AX((ackA=1) + A(!(ackA=1) U (ackB=1))));
+
+
+Question #3.4
+---------------------
+
+- Changed in ex1.v arbiter module:
+         if(active)
+         begin
+           case(state)
+             A:
+                state = B;
+              B:
+                state = C;
+              C:
+                state = A;
+            endcase
+          end
+		end
+		endmodule
+
+-------------------------------------------------------------------------------------------------
+Lab 4 
+-------------------------------------------------------------------------------------------------
+
+
+Problem #1
+********************************************
+Question #1.1
+-----------------------
+
+	CTL: AG((clientA.state=REQ) -> AF(clientA.state=HAVE_TOKEN));
+Question #1.2
+-----------------------
+	# MC: formula failed --- AG((clientA.state=REQ -> AF(clientA.state=HAVE_TOKEN)))
+Question #1.3
+-----------------------
+
+With this configuration the FSM will go into an endless cycle and never give clientA the token.
+
+ --Counter example begins
+--Fair path stem:
+--State 0:
+ackA:0
+ackB:0
+ackC:0
+arbiter.state:B
+clientA.state:REQ
+clientB.state:NO_REQ
+clientC.state:NO_REQ
+controllerA.state:IDLE
+controllerB.state:IDLE
+controllerC.state:IDLE
+pass_tokenA:1
+pass_tokenB:0
+pass_tokenC:0
+reqA:1
+reqB:0
+reqC:0
+
+--Goes to state 1:
+arbiter.state:C
+clientC.state:REQ
+pass_tokenA:0
+pass_tokenB:1
+reqC:1
+
+--Goes to state 2:
+arbiter.state:A
+controllerC.state:READY
+pass_tokenB:0
+
+--Goes to state 3:
+ackC:1
+controllerC.state:BUSY
+
+--Goes to state 4:
+clientC.state:HAVE_TOKEN
+
+--Fair path cycle:
+--State 0:
+ackA:0
+ackB:0
+ackC:1
+arbiter.state:A
+clientA.state:REQ
+clientB.state:NO_REQ
+clientC.state:HAVE_TOKEN
+controllerA.state:IDLE
+controllerB.state:IDLE
+controllerC.state:BUSY
+pass_tokenA:0
+pass_tokenB:0
+pass_tokenC:0
+reqA:1
+reqB:0
+reqC:1
+
+--Goes to state 1:
+<Unchanged>
+
+Problem #2
+*****************************
+Question #2.1
+-----------------
+
+There excist some time in the future that the client will pass the token, or
+
+If one client has the token for a long time, then pass the token.
+
+
+
+Question #2.2
+-----------------
+
+	CTL: F( F(clientA.state=HAVE_TOKEN) + F(clientB.state=HAVE_TOKEN) + F(clientC.state=HAVE_TOKEN ));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

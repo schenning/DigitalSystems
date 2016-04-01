@@ -12,7 +12,7 @@ architecture sim of g1_sim is
 -- signals are the same as the name of the ports of the entity g1 because it is
 -- much simpler but we could use different names and bind signal names to port
 -- names in the instanciation of g1.
-  signal clk, a, stop_simulation: bit;
+  signal clk, a, stop_simulation,rst: bit;
 
 begin
 
@@ -28,6 +28,18 @@ begin
       wait;
     end if;
   end process clock_generator;
+
+  reset_generator: process 
+  begin
+    rst <= '0';
+    wait for 1000 ns;
+	rst <= '1';
+    wait for 20 ns;
+    rst <= '0';
+    wait;
+  end process reset_generator; 
+
+
 
 -- this process generates the input sequence for the signal a.
   a_generator: process
@@ -51,6 +63,6 @@ begin
 
 -- we instanciate the entity g1, architecture arc. we name the instance i_g1 and
 -- specify the association between port names and actual signals.
-  i_g1: entity work.g1(arc) port map(clk => clk, a => a, s => s);
+  i_g1: entity work.g1(arc) port map(clk => clk, a => a,  rst => rst, s => s);
 
 end architecture sim;
