@@ -1,0 +1,707 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>
+HTML Logger v. 0.2.6 <Python3.0
+</title>
+<script type="text/javascript"> 
+
+ function toggleDiv(divId) { 
+   var item = document.getElementById(divId);
+   if(item.style.display == "none") {
+       item.style.display = "block"; 
+   }
+   else {
+       item.style.display = "none";
+   }
+ }
+ 
+function makeTopHeader(count,divId,cssClass,type) { 
+    var headDiv = document.getElementById(type+'Head_'+divId);
+    var tabDiv = document.getElementById("expandTab_"+type+"Head_"+divId);
+    headDiv.className=cssClass;
+   
+    countString = count == 0 ? "" : "(" + count + ")";
+
+    if (count != 0)
+        var newHtml = " <span class='suprisinglyComplicatedPlusSign'>+<\/span>" + countString;
+    else
+        var newHtml = " [<span class='suprisinglyComplicatedPlusSign'>+<\/span>]" + countString;
+
+    tabDiv.innerHTML = newHtml;
+}
+
+function toggleTopHeader(divId,type)
+{
+    var body = document.getElementById(type+"Body_"+divId);
+    var expandTab = document.getElementById("expandTab_"+type+"Head_"+divId);
+    var header = document.getElementById(type+"Head_"+divId);
+    if(body.style.display == "none") {
+       header.style.fontWeight = "normal"
+       expandTab.innerHTML = expandTab.innerHTML.replace("+","-");
+       body.style.display = "block"; 
+    }
+    else {
+       expandTab.innerHTML = expandTab.innerHTML.replace("-","+");
+       header.style.fontWeight = "bold"
+       body.style.display = "none";
+    }
+}
+
+function changeExpandTab(divId,newState,color) { 
+    var tab = document.getElementById("expandTab_treeHead_"+divId);
+    tab.style.color = color;
+}
+
+// Internet explorer detection:
+// Obtained from: http://msdn.microsoft.com/en-us/library/ms537509%28v=vs.85%29.aspx 
+
+function getInternetExplorerVersion()
+// Returns the version of Internet Explorer or a -1
+// (indicating the use of another browser).
+{
+  var rv = -1; // Return value assumes failure.
+  if (navigator.appName == 'Microsoft Internet Explorer')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  return rv;
+}
+function checkVersion()
+{
+  var ver = getInternetExplorerVersion();
+
+  if ( ver > -1 )
+  {
+    if ( ver < 8.0 )
+    { 
+      message = 'In order to provide the best results it is recommended to use one of the latest browsers, e.g.:\n';
+      message +='      - Mozilla Firefox\n';
+      message +='      - Google Chrome\n';
+      message +='      - MS Internet Explorer 8 or newer, but without compability view\n';
+ 
+      alert(message);
+    }
+  }
+}
+
+checkVersion()
+</script>
+
+<style type="text/css"> 
+.top_message {
+    /*float:right;*/
+    width:100%;
+    clear:right;
+    font-weight:bold;
+    margin-left:60px;
+}
+
+.message {
+    clear:both;
+    margin-left:60px;
+}
+
+.shortLogMessages {
+    clear:both;
+    margin-left:60px;
+}
+
+.inner_wrapper{
+    margin-left:60px;
+}
+
+.inner_message {
+    width:100%;
+    clear:both;
+}
+
+.expandTab {
+    width:60px;
+    min-width:40px;
+    color:Green;
+    text-align:left;
+    background-color:Transparent; 
+    cursor:pointer;
+    float:left;
+    clear:left;
+    z-index:2;
+}
+
+.warningTag {
+    font-weight:Bold;
+    color:#F88017;
+    background-color:Transparent; 
+}
+.errorTag {
+    font-weight:Bold;
+    background-color:Transparent; 
+    color:Red;
+}
+.informationTag {
+    font-weight:Bold;
+    color:#0070C0;
+    background-color:Transparent; 
+}
+
+.suprisinglyComplicatedPlusSign{
+    font-weight:Bolder;
+    /*z-index:1;*/
+    /*font-family:"Sans Serif"*/
+}
+
+body {
+    font-family:"Lucida Console", Monaco, monospace;
+    font-size:14px;
+}
+
+
+/*The following is for the summary table*/
+
+table {
+    width:100%;
+   /* border:1px solid black; */
+}
+
+th, td {
+    border:1px solid black; 
+    text-align:center;
+    vertical-align:text-top;
+}
+
+
+</style>
+
+</head>
+<body>
+<div class='shortLogMessages'>
+Running&nbsp;PRESTO&nbsp;HDLC
+<br>
+Compiling&nbsp;Entity&nbsp;Declaration&nbsp;G1
+<br>
+Compiling&nbsp;Architecture&nbsp;ARC&nbsp;of&nbsp;G1
+<br>
+Presto&nbsp;compilation&nbsp;completed&nbsp;successfully.
+<br>
+Loading&nbsp;db&nbsp;file&nbsp;'/packages/LabSoC/Synopsys/EDK/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt0p85v25c.db'
+<br>
+</div>
+<div id='warningHeadWrapper_shortLogMessageGroup_1_TIM-024'>
+<div id='expandTab_warningHead_shortLogMessageGroup_1_TIM-024' onClick='toggleTopHeader("shortLogMessageGroup_1_TIM-024","warning")' class='expandTab'> </div>
+<div id='warningHead_shortLogMessageGroup_1_TIM-024' class='message'>
+<span class='informationTag'> Information </span>:&nbsp;Using&nbsp;CCS&nbsp;timing&nbsp;libraries.&nbsp;<span class='informationTag'>(TIM-024)</span><br>
+</div>
+</div>
+<div class='shortLogMessages'>
+Loading&nbsp;db&nbsp;file&nbsp;'/packages/LabSoC/Synopsys/dc/Default/libraries/syn/gtech.db'
+<br>
+Loading&nbsp;db&nbsp;file&nbsp;'/packages/LabSoC/Synopsys/dc/Default/libraries/syn/standard.sldb'
+<br>
+&nbsp;&nbsp;Loading&nbsp;link&nbsp;library&nbsp;'saed32rvt_tt0p85v25c'
+<br>
+&nbsp;&nbsp;Loading&nbsp;link&nbsp;library&nbsp;'gtech'
+<br>
+Running&nbsp;PRESTO&nbsp;HDLC
+<br>
+
+<br>
+Statistics&nbsp;for&nbsp;case&nbsp;statements&nbsp;in&nbsp;always&nbsp;block&nbsp;at&nbsp;line&nbsp;20&nbsp;in&nbsp;file
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'../g1.vhd'
+<br>
+===============================================
+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Line&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;full/&nbsp;parallel&nbsp;&nbsp;|
+<br>
+===============================================
+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;auto/auto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+<br>
+===============================================
+<br>
+
+<br>
+Inferred&nbsp;memory&nbsp;devices&nbsp;in&nbsp;process
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;routine&nbsp;g1&nbsp;line&nbsp;20&nbsp;in&nbsp;file
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'../g1.vhd'.
+<br>
+===============================================================================
+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;Register&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Width&nbsp;|&nbsp;Bus&nbsp;|&nbsp;MB&nbsp;|&nbsp;AR&nbsp;|&nbsp;AS&nbsp;|&nbsp;SR&nbsp;|&nbsp;SS&nbsp;|&nbsp;ST&nbsp;|
+<br>
+===============================================================================
+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cnt_reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Flip-flop&nbsp;|&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Y&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;Y&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|
+<br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Flip-flop&nbsp;|&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;Y&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|&nbsp;N&nbsp;&nbsp;|
+<br>
+===============================================================================
+<br>
+Presto&nbsp;compilation&nbsp;completed&nbsp;successfully.
+<br>
+Elaborated&nbsp;1&nbsp;design.
+<br>
+Current&nbsp;design&nbsp;is&nbsp;now&nbsp;'g1'.
+<br>
+Current&nbsp;design&nbsp;is&nbsp;'g1'.
+<br>
+Warning:&nbsp;Design&nbsp;rule&nbsp;attributes&nbsp;from&nbsp;the&nbsp;driving&nbsp;cell&nbsp;will&nbsp;be
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;on&nbsp;the&nbsp;port.&nbsp;(UID-401)
+<br>
+Warning:&nbsp;Design&nbsp;rule&nbsp;attributes&nbsp;from&nbsp;the&nbsp;driving&nbsp;cell&nbsp;will&nbsp;be
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;on&nbsp;the&nbsp;port.&nbsp;(UID-401)
+<br>
+Warning:&nbsp;Design&nbsp;rule&nbsp;attributes&nbsp;from&nbsp;the&nbsp;driving&nbsp;cell&nbsp;will&nbsp;be
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;on&nbsp;the&nbsp;port.&nbsp;(UID-401)
+<br>
+&nbsp;
+<br>
+****************************************
+<br>
+check_design&nbsp;summary:
+<br>
+Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H-2013.03-SP5-4
+<br>
+Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sat&nbsp;Apr&nbsp;&nbsp;2&nbsp;13:31:23&nbsp;2016
+<br>
+****************************************
+<br>
+
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total
+<br>
+--------------------------------------------------------------------------------
+<br>
+Cells&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cells&nbsp;do&nbsp;not&nbsp;drive&nbsp;(LINT-1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+<br>
+--------------------------------------------------------------------------------
+<br>
+
+<br>
+</div>
+<div id='warningHeadWrapper_shortLogMessageGroup_7_UISN-27'>
+<div id='expandTab_warningHead_shortLogMessageGroup_7_UISN-27' onClick='toggleTopHeader("shortLogMessageGroup_7_UISN-27","warning")' class='expandTab'> </div>
+<div id='warningHead_shortLogMessageGroup_7_UISN-27' class='message'>
+<span class='informationTag'> Information </span>:&nbsp;Evaluating&nbsp;DesignWare&nbsp;library&nbsp;utilization.&nbsp;<span class='informationTag'>(UISN-27)</span><br>
+</div>
+</div>
+<div id='warningHeadWrapper_shortLogMessageGroup_7_LINT-1'>
+<div id='expandTab_warningHead_shortLogMessageGroup_7_LINT-1' onClick='toggleTopHeader("shortLogMessageGroup_7_LINT-1","warning")' class='expandTab'> </div>
+<div id='warningHead_shortLogMessageGroup_7_LINT-1' class='message'>
+<span class='warningTag'> Warning </span>:&nbsp;In&nbsp;design&nbsp;'g1',&nbsp;cell&nbsp;'C132'&nbsp;does&nbsp;not&nbsp;drive&nbsp;any&nbsp;nets.&nbsp;<span class='warningTag'>(LINT-1)</span><br>
+</div>
+</div>
+<div class='shortLogMessages'>
+
+<br>
+============================================================================
+<br>
+|&nbsp;DesignWare&nbsp;Building&nbsp;Block&nbsp;Library&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Available&nbsp;|
+<br>
+============================================================================
+<br>
+|&nbsp;Basic&nbsp;DW&nbsp;Building&nbsp;Blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;H-2013.03-DWBB_201303.5&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+<br>
+|&nbsp;Licensed&nbsp;DW&nbsp;Building&nbsp;Blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+<br>
+============================================================================
+<br>
+
+<br>
+
+<br>
+</div>
+<div id='warningHeadWrapper_shortLogMessageGroup_55_LINT-99'>
+<div id='expandTab_warningHead_shortLogMessageGroup_55_LINT-99' onClick='toggleTopHeader("shortLogMessageGroup_55_LINT-99","warning")' class='expandTab'> </div>
+<div id='warningHead_shortLogMessageGroup_55_LINT-99' class='message'>
+<span class='informationTag'> Information </span>:&nbsp;There&nbsp;are&nbsp;1&nbsp;potential&nbsp;problems&nbsp;in&nbsp;your&nbsp;design.&nbsp;Please&nbsp;run&nbsp;'check_design'&nbsp;for&nbsp;more&nbsp;information.&nbsp;<span class='informationTag'>(LINT-99)</span><br>
+</div>
+</div>
+<div class='shortLogMessages'>
+
+<br>
+
+<br>
+
+<br>
+&nbsp;&nbsp;Beginning&nbsp;Pass&nbsp;1&nbsp;Mapping
+<br>
+&nbsp;&nbsp;------------------------
+<br>
+&nbsp;&nbsp;Processing&nbsp;'g1'
+<br>
+
+<br>
+&nbsp;&nbsp;Updating&nbsp;timing&nbsp;information
+<br>
+</div>
+<div id='warningHeadWrapper_shortLogMessageGroup_65_UID-85'>
+<div id='expandTab_warningHead_shortLogMessageGroup_65_UID-85' onClick='toggleTopHeader("shortLogMessageGroup_65_UID-85","warning")' class='expandTab'> </div>
+<div id='warningHead_shortLogMessageGroup_65_UID-85' class='message'>
+<span class='informationTag'> Information </span>:&nbsp;Updating&nbsp;design&nbsp;information...&nbsp;<span class='informationTag'>(UID-85)</span><br>
+</div>
+</div>
+<div class='shortLogMessages'>
+
+<br>
+&nbsp;&nbsp;Beginning&nbsp;Implementation&nbsp;Selection
+<br>
+&nbsp;&nbsp;----------------------------------
+<br>
+&nbsp;&nbsp;Processing&nbsp;'g1_DW01_cmp2_0'
+<br>
+&nbsp;&nbsp;Processing&nbsp;'g1_DW01_cmp2_1'
+<br>
+&nbsp;&nbsp;Processing&nbsp;'g1_DW01_cmp2_2'
+<br>
+&nbsp;&nbsp;Processing&nbsp;'g1_DW01_cmp2_3'
+<br>
+&nbsp;&nbsp;Processing&nbsp;'g1_DW01_inc_0'
+<br>
+
+<br>
+&nbsp;&nbsp;Beginning&nbsp;Mapping&nbsp;Optimizations&nbsp;&nbsp;(Medium&nbsp;effort)
+<br>
+&nbsp;&nbsp;-------------------------------
+<br>
+
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;ELAPSED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORST&nbsp;NEG&nbsp;&nbsp;&nbsp;SETUP&nbsp;&nbsp;&nbsp;&nbsp;DESIGN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SLACK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COST&nbsp;&nbsp;&nbsp;&nbsp;RULE&nbsp;COST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;-------------------------
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;164.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+
+<br>
+
+<br>
+
+<br>
+&nbsp;&nbsp;Beginning&nbsp;Delay&nbsp;Optimization&nbsp;Phase
+<br>
+&nbsp;&nbsp;----------------------------------
+<br>
+
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;ELAPSED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORST&nbsp;NEG&nbsp;&nbsp;&nbsp;SETUP&nbsp;&nbsp;&nbsp;&nbsp;DESIGN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SLACK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COST&nbsp;&nbsp;&nbsp;&nbsp;RULE&nbsp;COST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;-------------------------
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;153.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+
+<br>
+
+<br>
+&nbsp;&nbsp;Beginning&nbsp;Area-Recovery&nbsp;Phase&nbsp;&nbsp;(cleanup)
+<br>
+&nbsp;&nbsp;-----------------------------
+<br>
+
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;ELAPSED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WORST&nbsp;NEG&nbsp;&nbsp;&nbsp;SETUP&nbsp;&nbsp;&nbsp;&nbsp;DESIGN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TIME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SLACK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COST&nbsp;&nbsp;&nbsp;&nbsp;RULE&nbsp;COST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDPOINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;---------&nbsp;-------------------------
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;147.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;146.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0:00:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+
+<br>
+&nbsp;&nbsp;Optimization&nbsp;Complete
+<br>
+&nbsp;&nbsp;---------------------
+<br>
+*******************
+<br>
+***&nbsp;AREA&nbsp;REPORT&nbsp;***
+<br>
+*******************
+<br>
+&nbsp;
+<br>
+****************************************
+<br>
+Report&nbsp;:&nbsp;area
+<br>
+Design&nbsp;:&nbsp;g1
+<br>
+Version:&nbsp;H-2013.03-SP5-4
+<br>
+Date&nbsp;&nbsp;&nbsp;:&nbsp;Sat&nbsp;Apr&nbsp;&nbsp;2&nbsp;13:31:48&nbsp;2016
+<br>
+****************************************
+<br>
+
+<br>
+</div>
+<div id='warningHeadWrapper_shortLogMessageGroup_74_UID-85'>
+<div id='expandTab_warningHead_shortLogMessageGroup_74_UID-85' onClick='toggleTopHeader("shortLogMessageGroup_74_UID-85","warning")' class='expandTab'> </div>
+<div id='warningHead_shortLogMessageGroup_74_UID-85' class='message'>
+<span class='informationTag'> Information </span>:&nbsp;Updating&nbsp;design&nbsp;information...&nbsp;<span class='informationTag'>(UID-85)</span><br>
+</div>
+</div>
+<div class='shortLogMessages'>
+Library(s)&nbsp;Used:
+<br>
+
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;saed32rvt_tt0p85v25c&nbsp;(File:&nbsp;/packages/LabSoC/Synopsys/EDK/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt0p85v25c.db)
+<br>
+
+<br>
+Number&nbsp;of&nbsp;ports:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4
+<br>
+Number&nbsp;of&nbsp;nets:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;52
+<br>
+Number&nbsp;of&nbsp;cells:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40
+<br>
+Number&nbsp;of&nbsp;combinational&nbsp;cells:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;34
+<br>
+Number&nbsp;of&nbsp;sequential&nbsp;cells:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6
+<br>
+Number&nbsp;of&nbsp;macros/black&nbsp;boxes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+<br>
+Number&nbsp;of&nbsp;buf/inv:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
+<br>
+Number&nbsp;of&nbsp;references:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13
+<br>
+
+<br>
+Combinational&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;90.983553
+<br>
+Buf/Inv&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.353600
+<br>
+Noncombinational&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44.729345
+<br>
+Macro/Black&nbsp;Box&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.000000
+<br>
+Net&nbsp;Interconnect&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.122000
+<br>
+
+<br>
+Total&nbsp;cell&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;135.712897
+<br>
+Total&nbsp;area:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;144.834897
+<br>
+*********************
+<br>
+***&nbsp;TIMING&nbsp;REPORT&nbsp;***
+<br>
+*********************
+<br>
+&nbsp;
+<br>
+****************************************
+<br>
+Report&nbsp;:&nbsp;timing
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-path&nbsp;full
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-delay&nbsp;max
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-max_paths&nbsp;1
+<br>
+Design&nbsp;:&nbsp;g1
+<br>
+Version:&nbsp;H-2013.03-SP5-4
+<br>
+Date&nbsp;&nbsp;&nbsp;:&nbsp;Sat&nbsp;Apr&nbsp;&nbsp;2&nbsp;13:31:48&nbsp;2016
+<br>
+****************************************
+<br>
+
+<br>
+Operating&nbsp;Conditions:&nbsp;tt0p85v25c&nbsp;&nbsp;&nbsp;Library:&nbsp;saed32rvt_tt0p85v25c
+<br>
+Wire&nbsp;Load&nbsp;Model&nbsp;Mode:&nbsp;enclosed
+<br>
+
+<br>
+&nbsp;&nbsp;Startpoint:&nbsp;cnt_reg[0]&nbsp;(rising&nbsp;edge-triggered&nbsp;flip-flop&nbsp;clocked&nbsp;by&nbsp;clk)
+<br>
+&nbsp;&nbsp;Endpoint:&nbsp;cnt_reg[0]&nbsp;(rising&nbsp;edge-triggered&nbsp;flip-flop&nbsp;clocked&nbsp;by&nbsp;clk)
+<br>
+&nbsp;&nbsp;Path&nbsp;Group:&nbsp;clk
+<br>
+&nbsp;&nbsp;Path&nbsp;Type:&nbsp;max
+<br>
+
+<br>
+&nbsp;&nbsp;Des/Clust/Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wire&nbsp;Load&nbsp;Model&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Library
+<br>
+&nbsp;&nbsp;------------------------------------------------
+<br>
+&nbsp;&nbsp;g1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ForQA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saed32rvt_tt0p85v25c
+<br>
+
+<br>
+&nbsp;&nbsp;Point&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Incr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Path
+<br>
+&nbsp;&nbsp;-----------------------------------------------------------
+<br>
+&nbsp;&nbsp;clock&nbsp;clk&nbsp;(rise&nbsp;edge)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00
+<br>
+&nbsp;&nbsp;clock&nbsp;network&nbsp;delay&nbsp;(ideal)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00
+<br>
+&nbsp;&nbsp;cnt_reg[0]/CLK&nbsp;(DFFARX1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;r
+<br>
+&nbsp;&nbsp;cnt_reg[0]/Q&nbsp;(DFFARX1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.17&nbsp;r
+<br>
+&nbsp;&nbsp;U66/Y&nbsp;(XOR2X1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.32&nbsp;f
+<br>
+&nbsp;&nbsp;U65/Y&nbsp;(XOR2X1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.47&nbsp;r
+<br>
+&nbsp;&nbsp;U63/Y&nbsp;(AO22X1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.08&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.55&nbsp;r
+<br>
+&nbsp;&nbsp;U51/Y&nbsp;(INVX0_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.60&nbsp;f
+<br>
+&nbsp;&nbsp;U49/Y&nbsp;(XNOR2X1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.72&nbsp;f
+<br>
+&nbsp;&nbsp;U47/Y&nbsp;(NAND2X0_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.06&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.78&nbsp;r
+<br>
+&nbsp;&nbsp;U46/Y&nbsp;(XOR2X1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.93&nbsp;f
+<br>
+&nbsp;&nbsp;U39/Y&nbsp;(AO22X1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.03&nbsp;f
+<br>
+&nbsp;&nbsp;cnt_reg[0]/D&nbsp;(DFFARX1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.04&nbsp;f
+<br>
+&nbsp;&nbsp;data&nbsp;arrival&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.04
+<br>
+
+<br>
+&nbsp;&nbsp;clock&nbsp;clk&nbsp;(rise&nbsp;edge)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.00
+<br>
+&nbsp;&nbsp;clock&nbsp;network&nbsp;delay&nbsp;(ideal)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.00
+<br>
+&nbsp;&nbsp;cnt_reg[0]/CLK&nbsp;(DFFARX1_RVT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.00&nbsp;r
+<br>
+&nbsp;&nbsp;library&nbsp;setup&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.95
+<br>
+&nbsp;&nbsp;data&nbsp;required&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.95
+<br>
+&nbsp;&nbsp;-----------------------------------------------------------
+<br>
+&nbsp;&nbsp;data&nbsp;required&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.95
+<br>
+&nbsp;&nbsp;data&nbsp;arrival&nbsp;time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1.04
+<br>
+&nbsp;&nbsp;-----------------------------------------------------------
+<br>
+&nbsp;&nbsp;slack&nbsp;(MET)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.90
+<br>
+
+<br>
+
+<br>
+Writing&nbsp;verilog&nbsp;file&nbsp;'/homes/schei/git/digitalsystems/dclab/g1.dc-syn.1459596677/g1.v'.
+<br>
+Writing&nbsp;ddc&nbsp;file&nbsp;'g1.ddc'.
+<br>
+
+<br>
+Thank&nbsp;you...
+<br>
+</div>
+<br> <A href='./summary.html'> To summary </A> <br>
+<table>
+<tr>
+<th> <A href='./summary.html#Error'>Errors(0)</A></th>
+<th> <A href='./summary.html#Warning'>Warnings(1)</A></th>
+<th> <A href='./summary.html#Information'>Informations(5)</A></th>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+<A href='./summary.html#LINT-1'>LINT-1(1)</A><br>
+</td>
+<td>
+<A href='./summary.html#LINT-99'>LINT-99(1)</A><br>
+<A href='./summary.html#TIM-024'>TIM-024(1)</A><br>
+<A href='./summary.html#UID-85'>UID-85(2)</A><br>
+<A href='./summary.html#UISN-27'>UISN-27(1)</A><br>
+</td>
+</tr>
+</table>
+</body>
+</html>

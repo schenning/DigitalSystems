@@ -1,0 +1,234 @@
+Running PRESTO HDLC
+Compiling Entity Declaration G1
+Compiling Architecture ARC of G1
+Presto compilation completed successfully.
+Loading db file '/packages/LabSoC/Synopsys/EDK/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt0p85v25c.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/packages/LabSoC/Synopsys/dc/Default/libraries/syn/gtech.db'
+Loading db file '/packages/LabSoC/Synopsys/dc/Default/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Statistics for case statements in always block at line 20 in file
+        '../g1.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            39            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine g1 line 20 in file
+                '../g1.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       cnt_reg       | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        s_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'g1'.
+Current design is 'g1'.
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+        set on the port. (UID-401)
+ 
+****************************************
+check_design summary:
+Version:     H-2013.03-SP5-4
+Date:        Sat Apr  2 13:31:23 2016
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Cells                                                               1
+    Cells do not drive (LINT-1)                                     1
+--------------------------------------------------------------------------------
+
+Warning: In design 'g1', cell 'C132' does not drive any nets. (LINT-1)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | H-2013.03-DWBB_201303.5 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'g1'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'g1_DW01_cmp2_0'
+  Processing 'g1_DW01_cmp2_1'
+  Processing 'g1_DW01_cmp2_2'
+  Processing 'g1_DW01_cmp2_3'
+  Processing 'g1_DW01_inc_0'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:13     164.9      0.00       0.0       0.0                          
+    0:00:13     164.9      0.00       0.0       0.0                          
+    0:00:13     164.9      0.00       0.0       0.0                          
+    0:00:13     164.9      0.00       0.0       0.0                          
+    0:00:13     164.9      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:14     153.0      0.00       0.0       0.0                          
+    0:00:21     150.2      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:22     150.2      0.00       0.0       0.0                          
+    0:00:22     150.2      0.00       0.0       0.0                          
+    0:00:23     147.5      0.00       0.0       0.0                          
+    0:00:24     146.2      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+    0:00:25     144.8      0.00       0.0       0.0                          
+
+  Optimization Complete
+  ---------------------
+*******************
+*** AREA REPORT ***
+*******************
+ 
+****************************************
+Report : area
+Design : g1
+Version: H-2013.03-SP5-4
+Date   : Sat Apr  2 13:31:48 2016
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    saed32rvt_tt0p85v25c (File: /packages/LabSoC/Synopsys/EDK/SAED32_EDK/lib/stdcell_rvt/db_ccs/saed32rvt_tt0p85v25c.db)
+
+Number of ports:                            4
+Number of nets:                            52
+Number of cells:                           40
+Number of combinational cells:             34
+Number of sequential cells:                 6
+Number of macros/black boxes:               0
+Number of buf/inv:                          5
+Number of references:                      13
+
+Combinational area:                 90.983553
+Buf/Inv area:                        6.353600
+Noncombinational area:              44.729345
+Macro/Black Box area:                0.000000
+Net Interconnect area:               9.122000
+
+Total cell area:                   135.712897
+Total area:                        144.834897
+*********************
+*** TIMING REPORT ***
+*********************
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : g1
+Version: H-2013.03-SP5-4
+Date   : Sat Apr  2 13:31:48 2016
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  g1                 ForQA                 saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       0.00 r
+  cnt_reg[0]/Q (DFFARX1_RVT)               0.17       0.17 r
+  U66/Y (XOR2X1_RVT)                       0.15       0.32 f
+  U65/Y (XOR2X1_RVT)                       0.15       0.47 r
+  U63/Y (AO22X1_RVT)                       0.08       0.55 r
+  U51/Y (INVX0_RVT)                        0.05       0.60 f
+  U49/Y (XNOR2X1_RVT)                      0.11       0.72 f
+  U47/Y (NAND2X0_RVT)                      0.06       0.78 r
+  U46/Y (XOR2X1_RVT)                       0.15       0.93 f
+  U39/Y (AO22X1_RVT)                       0.10       1.03 f
+  cnt_reg[0]/D (DFFARX1_RVT)               0.01       1.04 f
+  data arrival time                                   1.04
+
+  clock clk (rise edge)                    2.00       2.00
+  clock network delay (ideal)              0.00       2.00
+  cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       2.00 r
+  library setup time                      -0.05       1.95
+  data required time                                  1.95
+  -----------------------------------------------------------
+  data required time                                  1.95
+  data arrival time                                  -1.04
+  -----------------------------------------------------------
+  slack (MET)                                         0.90
+
+
+Writing verilog file '/homes/schei/git/digitalsystems/dclab/g1.dc-syn.1459596677/g1.v'.
+Writing ddc file 'g1.ddc'.
+
+Thank you...
+

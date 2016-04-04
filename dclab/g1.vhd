@@ -24,7 +24,7 @@ begin
     
 --    if clk = '1' and clk'event then
 --      if a = '1' and (cnt=0 or cnt = 31) then
-    if rst = '1' and clk = '1' and clk'event  then
+    if rst = '1' and clk = '1'  then
       s <= '0';
 	  cnt <= 0; 
     elsif clk = '1' and clk'event then
